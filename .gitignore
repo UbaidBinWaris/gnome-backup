@@ -1,0 +1,8 @@
+# Ignore everything else
+
+# Allow extension folder
+!extensions/
+!extensions/**
+# Allow settings file
+!gnome-settings.conf
+
