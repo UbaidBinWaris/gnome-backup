@@ -2,7 +2,7 @@
 -- PostgreSQL database cluster dump
 --
 
-\restrict 5SvCOpD5JIAftcifmrv7ATzzxDcWmpVyh46c6kbrjarPyQ2daclMpicKcRj9MYb
+\restrict ryyBehZ4a8g5rpWnZthVtl3BpmUuMJFP0EQbs2qltsGdwbHMy6eGPLs8LdHQScK
 
 SET default_transaction_read_only = off;
 
@@ -31,7 +31,7 @@ ALTER ROLE web_user WITH NOSUPERUSER INHERIT NOCREATEROLE NOCREATEDB LOGIN NOREP
 
 
 
-\unrestrict 5SvCOpD5JIAftcifmrv7ATzzxDcWmpVyh46c6kbrjarPyQ2daclMpicKcRj9MYb
+\unrestrict ryyBehZ4a8g5rpWnZthVtl3BpmUuMJFP0EQbs2qltsGdwbHMy6eGPLs8LdHQScK
 
 --
 -- PostgreSQL database cluster dump complete

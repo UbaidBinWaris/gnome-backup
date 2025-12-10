@@ -65,7 +65,7 @@ if [ -d "$DB_DIR" ]; then
     if [ -d "$DB_DIR/mysql" ] && [ -f "$DB_DIR/mysql/database-list.txt" ]; then
         mysql_count=$(wc -l < "$DB_DIR/mysql/database-list.txt" 2>/dev/null || echo 0)
         mysql_size=$(du -sh "$DB_DIR/mysql" 2>/dev/null | cut -f1 || echo "0")
-        printf "🗄️  %-25s %5d databases (%s)\n" "MySQL/MariaDB:" "$mysql_count" "$mysql_size"
+        printf "[MYSQL]  %-25s %5d databases (%s)\n" "MySQL/MariaDB:" "$mysql_count" "$mysql_size"
         db_count=$((db_count + mysql_count))
     fi
     
@@ -73,7 +73,7 @@ if [ -d "$DB_DIR" ]; then
     if [ -d "$DB_DIR/postgresql" ] && [ -f "$DB_DIR/postgresql/database-list.txt" ]; then
         pg_count=$(wc -l < "$DB_DIR/postgresql/database-list.txt" 2>/dev/null || echo 0)
         pg_size=$(du -sh "$DB_DIR/postgresql" 2>/dev/null | cut -f1 || echo "0")
-        printf "🐘 %-25s %5d databases (%s)\n" "PostgreSQL:" "$pg_count" "$pg_size"
+        printf "[POSTGRESQL] %-25s %5d databases (%s)\n" "PostgreSQL:" "$pg_count" "$pg_size"
         db_count=$((db_count + pg_count))
     fi
     
@@ -81,14 +81,14 @@ if [ -d "$DB_DIR" ]; then
     if [ -d "$DB_DIR/mongodb" ] && [ -f "$DB_DIR/mongodb/database-list.txt" ]; then
         mongo_count=$(wc -l < "$DB_DIR/mongodb/database-list.txt" 2>/dev/null || echo 0)
         mongo_size=$(du -sh "$DB_DIR/mongodb" 2>/dev/null | cut -f1 || echo "0")
-        printf "🍃 %-25s %5d databases (%s)\n" "MongoDB:" "$mongo_count" "$mongo_size"
+        printf "[MONGODB] %-25s %5d databases (%s)\n" "MongoDB:" "$mongo_count" "$mongo_size"
         db_count=$((db_count + mongo_count))
     fi
     
     # Redis
     if [ -d "$DB_DIR/redis" ] && [ -f "$DB_DIR/redis/dump.rdb" -o -f "$DB_DIR/redis/appendonly.aof" ]; then
         redis_size=$(du -sh "$DB_DIR/redis" 2>/dev/null | cut -f1 || echo "0")
-        printf "🔴 %-25s %5s (%s)\n" "Redis:" "✓" "$redis_size"
+        printf "[REDIS] %-25s %5s (%s)\n" "Redis:" "✓" "$redis_size"
         db_count=$((db_count + 1))
     fi
     
@@ -96,7 +96,7 @@ if [ -d "$DB_DIR" ]; then
     if [ -d "$DB_DIR/sqlite" ] && [ -f "$DB_DIR/sqlite/database-paths.txt" ]; then
         sqlite_count=$(wc -l < "$DB_DIR/sqlite/database-paths.txt" 2>/dev/null || echo 0)
         sqlite_size=$(du -sh "$DB_DIR/sqlite" 2>/dev/null | cut -f1 || echo "0")
-        printf "💿 %-25s %5d files (%s)\n" "SQLite:" "$sqlite_count" "$sqlite_size"
+        printf "[SQLITE] %-25s %5d files (%s)\n" "SQLite:" "$sqlite_count" "$sqlite_size"
         db_count=$((db_count + sqlite_count))
     fi
     

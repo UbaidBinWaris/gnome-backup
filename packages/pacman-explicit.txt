@@ -62,6 +62,7 @@ gdm
 gerix-wifi-cracker
 giskismet
 git
+git-filter-repo
 github-cli
 github-desktop-bin
 gnome-backgrounds

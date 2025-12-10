@@ -85,6 +85,7 @@ fonttools==4.60.1
 frozenlist==1.8.0
 gevent==25.9.1
 gevent-websocket==0.10.1
+git-filter-repo==2.47.0
 gitdb==4.0.12
 GitPython==3.1.45
 gnome-extensions-cli==0.10.7

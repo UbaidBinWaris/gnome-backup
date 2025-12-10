@@ -58,6 +58,7 @@ gdm
 gerix-wifi-cracker
 giskismet
 git
+git-filter-repo
 github-cli
 gnome-backgrounds
 gnome-bluetooth
