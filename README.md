@@ -47,19 +47,33 @@ gnome-backup/
 ├── extensions/                  # GNOME Shell extensions
 ├── themes/                      # GTK themes
 ├── icons/                       # Icon themes
-├── packages/                    # Package lists and installation script
-│   ├── install-all.sh          # Automated package installation
+├── packages/                    # Package lists and installation scripts
+│   ├── install-all.sh          # Automated package installation (all sources)
+│   ├── install-yay.sh          # Yay AUR helper installer
+│   ├── restore-pacman.sh       # Restore only pacman packages
+│   ├── restore-aur.sh          # Restore only AUR packages
+│   ├── restore-flatpak.sh      # Restore only Flatpak packages
+│   ├── restore-snap.sh         # Restore only Snap packages
+│   ├── restore-npm.sh          # Restore only NPM global packages
+│   ├── restore-cargo.sh        # Restore only Cargo packages
+│   ├── restore-ruby.sh         # Restore only Ruby gems
+│   ├── restore-go.sh           # Restore only Go packages
 │   ├── pacman-native.txt
 │   ├── pacman-explicit.txt
 │   ├── aur-packages.txt
 │   ├── flatpak.txt
 │   ├── snap.txt
-│   ├── pip3.txt
 │   ├── npm-global.txt
 │   ├── cargo.txt
-│   └── ruby-gems.txt
+│   ├── ruby-gems.txt
+│   └── go-binaries.txt
 └── databases/                   # Database backups
-    ├── restore-databases.sh    # Automated database restoration
+    ├── restore-databases.sh    # Automated database restoration (all databases)
+    ├── restore-mysql.sh        # Restore only MySQL/MariaDB
+    ├── restore-postgresql.sh   # Restore only PostgreSQL
+    ├── restore-mongodb.sh      # Restore only MongoDB
+    ├── restore-redis.sh        # Restore only Redis
+    ├── restore-sqlite.sh       # Restore only SQLite
     ├── mysql/                  # MySQL/MariaDB dumps
     ├── postgresql/             # PostgreSQL dumps
     ├── mongodb/                # MongoDB dumps
@@ -144,18 +158,101 @@ The restoration process:
 
 ### Manual Package Installation
 
-If package installation was skipped during restoration:
+If package installation was skipped during restoration, you can install all packages at once:
 
 ```bash
 ./packages/install-all.sh
 ```
 
+Or install packages selectively by package manager:
+
+**Install Pacman packages only:**
+```bash
+./packages/restore-pacman.sh
+```
+
+**Install AUR packages only:**
+```bash
+./packages/restore-aur.sh
+```
+
+**Install Flatpak packages only:**
+```bash
+./packages/restore-flatpak.sh
+```
+
+**Install Snap packages only:**
+```bash
+./packages/restore-snap.sh
+```
+
+**Install NPM global packages only:**
+```bash
+./packages/restore-npm.sh
+```
+
+**Install Cargo packages only:**
+```bash
+./packages/restore-cargo.sh
+```
+
+**Install Ruby gems only:**
+```bash
+./packages/restore-ruby.sh
+```
+
+**Install Go packages only:**
+```bash
+./packages/restore-go.sh
+```
+
+### Installing Yay AUR Helper
+
+If you don't have yay installed and need it for AUR packages:
+
+```bash
+./packages/install-yay.sh
+```
+
+This script will:
+- Check if yay or paru is already installed
+- Install required dependencies (git, base-devel)
+- Clone yay from AUR
+- Build and install yay from source
+
 ### Manual Database Restoration
 
-If database restoration was skipped during restoration:
+If database restoration was skipped during restoration, you can restore all databases at once:
 
 ```bash
 ./databases/restore-databases.sh
+```
+
+Or restore databases selectively by system:
+
+**Restore MySQL/MariaDB only:**
+```bash
+./databases/restore-mysql.sh
+```
+
+**Restore PostgreSQL only:**
+```bash
+./databases/restore-postgresql.sh
+```
+
+**Restore MongoDB only:**
+```bash
+./databases/restore-mongodb.sh
+```
+
+**Restore Redis only:**
+```bash
+./databases/restore-redis.sh
+```
+
+**Restore SQLite databases only:**
+```bash
+./databases/restore-sqlite.sh
 ```
 
 **Warning**: Database restoration may overwrite existing data. The script requires explicit confirmation before proceeding.
@@ -205,7 +302,12 @@ git clone https://github.com/YourUsername/gnome-backup.git ~/gnome-backup
 cd ~/gnome-backup
 ```
 
-4. Install AUR helper (required for AUR packages):
+4. Install yay AUR helper (required for AUR packages):
+```bash
+./packages/install-yay.sh
+```
+
+Or install manually:
 ```bash
 sudo pacman -S --needed base-devel git
 git clone https://aur.archlinux.org/yay.git
@@ -222,6 +324,29 @@ cd ~/gnome-backup
 6. Confirm package and database installation when prompted
 
 7. Log out and log back in to apply all settings
+
+### Alternative: Selective Restoration
+
+If you want more control over what gets restored:
+
+**Restore GNOME settings only:**
+```bash
+./restore-gnome.sh
+# Choose 'n' for package and database installation
+```
+
+**Then restore specific package types:**
+```bash
+./packages/restore-pacman.sh      # Native Arch packages
+./packages/restore-aur.sh         # AUR packages  
+./packages/restore-flatpak.sh     # Flatpak apps
+```
+
+**Then restore specific databases:**
+```bash
+./databases/restore-mysql.sh      # MySQL databases
+./databases/restore-postgresql.sh # PostgreSQL databases
+```
 
 ## Database Backup Details
 
@@ -354,12 +479,34 @@ The automated installation script (packages/install-all.sh) performs the followi
 2. Installs AUR packages via yay or paru if available
 3. Installs Flatpak applications from Flathub repository
 4. Installs Snap packages if snapd is available
-5. Installs Python packages with --user flag
-6. Installs Node.js global packages
-7. Installs Rust packages via cargo
-8. Installs Ruby gems
+5. Installs Node.js global packages
+6. Installs Rust packages via cargo
+7. Installs Ruby gems
 
 The script continues execution even if individual package installations fail, ensuring maximum restoration coverage.
+
+### Individual Package Restoration Scripts
+
+Each package manager has its own restoration script for granular control:
+
+| Script | Purpose | Command |
+|--------|---------|---------|
+| install-yay.sh | Install yay AUR helper | `./packages/install-yay.sh` |
+| restore-pacman.sh | Restore native Arch packages | `./packages/restore-pacman.sh` |
+| restore-aur.sh | Restore AUR packages | `./packages/restore-aur.sh` |
+| restore-flatpak.sh | Restore Flatpak applications | `./packages/restore-flatpak.sh` |
+| restore-snap.sh | Restore Snap packages | `./packages/restore-snap.sh` |
+| restore-npm.sh | Restore NPM global packages | `./packages/restore-npm.sh` |
+| restore-cargo.sh | Restore Cargo packages | `./packages/restore-cargo.sh` |
+| restore-ruby.sh | Restore Ruby gems | `./packages/restore-ruby.sh` |
+| restore-go.sh | Restore Go packages | `./packages/restore-go.sh` |
+
+All individual scripts include:
+- Dependency checking
+- Confirmation prompts
+- Progress tracking
+- Error handling
+- Installation summaries
 
 ## Database Restoration Details
 
@@ -373,6 +520,55 @@ The automated restoration script (databases/restore-databases.sh) performs the f
 6. Provides SQLite database locations for manual restoration
 
 Database services must be running before restoration. The script handles missing services gracefully.
+
+### Individual Database Restoration Scripts
+
+Each database system has its own restoration script for granular control:
+
+| Script | Database System | Command |
+|--------|----------------|---------|
+| restore-mysql.sh | MySQL/MariaDB | `./databases/restore-mysql.sh` |
+| restore-postgresql.sh | PostgreSQL | `./databases/restore-postgresql.sh` |
+| restore-mongodb.sh | MongoDB | `./databases/restore-mongodb.sh` |
+| restore-redis.sh | Redis | `./databases/restore-redis.sh` |
+| restore-sqlite.sh | SQLite | `./databases/restore-sqlite.sh` |
+
+**MySQL/MariaDB restoration:**
+- Creates databases if they don't exist
+- Imports SQL dumps with full schema and data
+- Validates MySQL service is running
+- Shows success/failure for each database
+
+**PostgreSQL restoration:**
+- Restores global objects first (roles, tablespaces)
+- Creates databases using sudo -u postgres
+- Imports SQL dumps for each database
+- Handles database creation conflicts gracefully
+
+**MongoDB restoration:**
+- Uses mongorestore with BSON dumps
+- Preserves collections, indexes, and metadata
+- Shows progress for each database
+- Validates MongoDB service is running
+
+**Redis restoration:**
+- Stops Redis service before restoration
+- Copies RDB and AOF files
+- Restarts Redis service
+- Tests connection after restoration
+
+**SQLite restoration:**
+- Allows custom restoration directory
+- Validates database integrity before and after
+- Preserves subdirectory structure
+- Shows detailed progress for each database
+
+All individual scripts include:
+- Service availability checks
+- File existence validation
+- Confirmation prompts
+- Progress indicators
+- Success/failure reporting
 
 ## Automation
 
