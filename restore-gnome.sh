@@ -35,6 +35,23 @@ else
     gnome-shell --replace &
 fi
 
+echo ""
+echo "📦 To restore applications and tools, run:"
+if [ -f "$BACKUP_DIR/packages/install-all.sh" ]; then
+    echo "    $BACKUP_DIR/packages/install-all.sh"
+    echo ""
+    read -p "Do you want to install packages now? (y/N) " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        bash "$BACKUP_DIR/packages/install-all.sh"
+    else
+        echo "Skipping package installation. Run the script above later to install."
+    fi
+else
+    echo "    ⚠️  No package backup found at $BACKUP_DIR/packages/install-all.sh"
+fi
+
+echo ""
 echo "🎉 Restore complete!"
 echo "Log out & log back in to apply all settings."
 
