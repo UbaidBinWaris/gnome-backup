@@ -52,6 +52,22 @@ else
 fi
 
 echo ""
+echo "💾 To restore databases, run:"
+if [ -f "$BACKUP_DIR/databases/restore-databases.sh" ]; then
+    echo "    $BACKUP_DIR/databases/restore-databases.sh"
+    echo ""
+    read -p "Do you want to restore databases now? (y/N) " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        bash "$BACKUP_DIR/databases/restore-databases.sh"
+    else
+        echo "Skipping database restoration. Run the script above later to restore."
+    fi
+else
+    echo "    ℹ️  No database backup found"
+fi
+
+echo ""
 echo "🎉 Restore complete!"
 echo "Log out & log back in to apply all settings."
 

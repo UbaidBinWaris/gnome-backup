@@ -1,0 +1,2 @@
+gixi_admin_db
+web_database

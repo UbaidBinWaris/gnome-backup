@@ -78,9 +78,10 @@ chmod +x *.sh
 
 ---
 
-### 4. `show-packages.sh` - View Package Statistics
+### 4. `show-packages.sh` - View Package & Database Statistics
 **What it does:**
 - Shows count of backed up packages
+- Shows backed up databases and sizes
 - Displays backup timestamp
 - Provides helpful tips
 
@@ -95,13 +96,38 @@ chmod +x *.sh
 ║   📦 Package Backup Statistics           ║
 ╚═══════════════════════════════════════════╝
 
-📦 Pacman (native):              245 packages
-🔧 AUR packages:                  42 packages
-📱 Flatpak apps:                  12 packages
+📦 Pacman (native):              340 packages
+🔧 AUR packages:                  27 packages
+🐍 Python (pip3):                373 packages
 ...
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-TOTAL:                           350 total
+TOTAL:                           821 total
+
+╔═══════════════════════════════════════════╗
+║   💾 Database Backup Statistics          ║
+╚═══════════════════════════════════════════╝
+
+🐘 PostgreSQL:                    2 databases (188K)
+💿 SQLite:                       50 files (13M)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TOTAL DATABASES:                 52 total (13M)
 ```
+
+---
+
+### 5. `databases/restore-databases.sh` - Database Restoration
+**What it does:**
+- Restores ALL backed up databases
+- Requires explicit confirmation
+- Handles multiple database systems
+- Safe error handling
+
+**Usage:**
+```bash
+./databases/restore-databases.sh
+```
+
+**⚠️ WARNING:** May overwrite existing database data!
 
 ---
 
@@ -150,6 +176,7 @@ cd ~/gnome-backup
 | **Themes** | GTK themes | `themes/` |
 | **Icons** | Icon themes | `icons/` |
 | **Packages** | All installed apps/tools | `packages/*.txt` |
+| **Databases** | MySQL, PostgreSQL, MongoDB, Redis, SQLite | `databases/` |
 
 ---
 
@@ -165,6 +192,18 @@ cd ~/gnome-backup
 cat packages/pacman-native.txt
 cat packages/aur-packages.txt
 cat packages/flatpak.txt
+```
+
+### View database backups
+```bash
+ls -lh databases/
+cat databases/postgresql/database-list.txt
+cat databases/mysql/database-list.txt
+```
+
+### Restore only databases
+```bash
+./databases/restore-databases.sh
 ```
 
 ### Install only specific packages

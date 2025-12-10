@@ -106,5 +106,48 @@ cd ~/gnome-backup
 
 ---
 
+## Version 2.1 - Database Backup Feature (December 10, 2025)
+
+### Added Database Support 💾
+
+**New Functionality:**
+- ✅ **MySQL/MariaDB** database backup and restore
+- ✅ **PostgreSQL** database backup and restore (with globals)
+- ✅ **MongoDB** database backup and restore
+- ✅ **Redis** data snapshot backup and restore
+- ✅ **SQLite** automatic discovery and backup
+
+**Auto-generated Scripts:**
+- `databases/restore-databases.sh` - One-command database restoration
+- Confirmation prompt for safety before restoring
+
+**Enhanced Features:**
+- Automatic service detection (only backs up running databases)
+- SQL dumps for MySQL/PostgreSQL
+- BSON dumps for MongoDB
+- RDB/AOF snapshots for Redis
+- Direct file copy for SQLite databases
+- Size and count statistics in `show-packages.sh`
+
+**Safety Features:**
+- Excludes system databases automatically
+- Requires explicit confirmation before restore
+- Handles missing services gracefully
+- Supports sudo for PostgreSQL operations
+
+**Documentation:**
+- `DATABASE_GUIDE.md` - Complete database documentation
+- `DATABASE_SECURITY.md` - Security best practices and warnings
+- Updated README with database information
+- Added security warnings for sensitive data
+
+**Current Backup Summary (Example System):**
+- 821 packages from 9 sources
+- 2 PostgreSQL databases (188KB)
+- 50 SQLite files (13MB)
+- Total: 873 items backed up
+
+---
+
 **Created**: December 10, 2025  
 **Status**: ✅ Fully Implemented & Tested

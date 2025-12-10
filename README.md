@@ -26,6 +26,14 @@ Automatically backs up and restores packages from:
 - **Ruby gems**
 - **Go binaries** (list only - manual reinstall required)
 
+### 💾 Databases & Data
+Automatically backs up and restores databases from:
+- **MySQL/MariaDB** (all user databases + schemas)
+- **PostgreSQL** (all databases + global objects)
+- **MongoDB** (all databases + collections)
+- **Redis** (data snapshots + config)
+- **SQLite** (all .db files in home directory)
+
 ## Usage
 
 ### Backup Everything
@@ -40,7 +48,9 @@ This will create:
 - `themes/` - GTK themes
 - `icons/` - Icon themes
 - `packages/` - **Complete list of installed packages**
-- `packages/install-all.sh` - **Automated restoration script**
+- `packages/install-all.sh` - **Automated package restoration script**
+- `databases/` - **Complete database backups**
+- `databases/restore-databases.sh` - **Automated database restoration script**
 
 ### Restore Everything
 
@@ -52,6 +62,7 @@ This will:
 1. Restore all GNOME settings
 2. Restore extensions, themes, and icons
 3. Prompt to install all backed up packages
+4. Prompt to restore all backed up databases
 
 ### Manual Package Installation
 
@@ -60,6 +71,16 @@ If you skip package installation during restore, you can run it later:
 ```bash
 ./packages/install-all.sh
 ```
+
+### Manual Database Restoration
+
+If you skip database restoration during restore, you can run it later:
+
+```bash
+./databases/restore-databases.sh
+```
+
+**⚠️ Important:** Database restoration requires the database services to be running and may overwrite existing data.
 
 ## Package Files
 
@@ -75,6 +96,18 @@ The backup creates the following package lists in `packages/`:
 - `cargo.txt` - Rust packages
 - `ruby-gems.txt` - Ruby gems
 - `go-binaries.txt` - Go binaries list
+
+## Database Backups
+
+The backup creates database dumps in `databases/`:
+
+- `mysql/*.sql` - MySQL/MariaDB database dumps
+- `postgresql/*.sql` - PostgreSQL database dumps
+- `mongodb/` - MongoDB BSON dumps
+- `redis/dump.rdb` - Redis data snapshot
+- `sqlite/*.db` - SQLite database files
+
+**📖 See [DATABASE_GUIDE.md](DATABASE_GUIDE.md) for complete database documentation.**
 
 ## Requirements
 
@@ -143,9 +176,12 @@ cd ~/gnome-backup
 
 - **AUR packages** require `yay` or `paru` to be installed first
 - **Go binaries** are listed but must be manually reinstalled from their sources
+- **Database restoration may overwrite existing data** - always confirm before restoring
+- **Large databases:** Consider adding `databases/` to `.gitignore` for repos with huge databases
 - Package installation can take significant time depending on the number of packages
 - Some packages may fail to install if repositories have changed - this is normal
 - Wayland users must log out/in to apply GNOME Shell changes
+- Backup script is **safe to run multiple times** - it overwrites previous backups
 
 ## Automation
 

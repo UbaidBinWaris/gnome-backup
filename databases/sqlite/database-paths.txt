@@ -1,0 +1,50 @@
+/home/arch/Documents/Github/BSCS/BSCS-3B/DSA Final Project/.vs/DSA Final Project/v17/Browse.VC.db
+/home/arch/Documents/Github/BSCS/BSCS-3B/DSA Final Project/.vs/slnx.sqlite
+/home/arch/Documents/Github/BSCS/BSCS-3B/DSA Final Project/Fianl Project/Project4/.vs/Project4/v17/Browse.VC.db
+/home/arch/Documents/Github/BSCS/BSCS-3B/DSA Final Project/Fianl Project/Project4/.vs/Project4/v17/Solution.VC.db
+/home/arch/Documents/Github/BSCS/BSCS-3B/DSA/PROJECT ITLY/.vs/PROJECT ITLY/v17/Browse.VC.db
+/home/arch/Documents/Github/BSCS/BSCS-3B/DSA/PROJECT ITLY/.vs/slnx.sqlite
+/home/arch/.config/JetBrains/IntelliJIdea2025.2/app-internal-state.db
+/home/arch/.config/JetBrains/IntelliJIdea2025.2/updatedBrokenPlugins.db
+/home/arch/.config/Google/AndroidStudio2025.1.3/app-internal-state.db
+/home/arch/.config/Google/AndroidStudio2025.1.3/updatedBrokenPlugins.db
+/home/arch/.config/Google/AndroidStudio2025.1.4/updatedBrokenPlugins.db
+/home/arch/.config/Google/AndroidStudio2025.1.4/app-internal-state.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/32xT2FUuTKhl2qKIdX4lUrCnbai/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/332jIS3kv7D4gUWdpXvxBQTgRwc/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/3339WBDRnjk2NqpyBFqnW3tRHel/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/333BKLpH5gJ5jnOTK8KePRg8Jgf/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/333CHEbetsqUOtZ0HffsbDyIuDn/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/333s40IkPipNMGOTO69X2vFnR7v/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/3344apEi4PQ777s5icItI6vK9Xm/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/335xlC92L8JjhYMR63zaa370IAQ/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/33BJwrnSP94uSfumY1HRTK5t4MN/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/33BbFSLqfCWcuHBP9Dbwpl55V8x/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/33VqI1XLH3hiNCLJSYv1VSfweo6/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/33n1KY0lUxaTrgRjv5NoqalWUrB/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/33oxRT4PNHTEkOqVwoRnxLM4CYv/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/33vVUq8dlVOwcyeDaqasPA6VfHx/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/33ryyJCyDQfEnsK5rS4Z9yjtEbw/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/33vWm4XzFtEozZ70oSH2sr4qncK/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/343vhj7CCqfYBHEdeOL9d8Nv6Nn/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/34N585KsyHYyLw6p3MmxwlR2RDs/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/34Mzn9E6DyRHeK3sGvZB7rVzhDo/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/34R7md2tQ0SgE04g8EvVlZhwOYj/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/34R8s3G9AZddUxLNCv9WyWvhOen/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/34kbODgJ1q8P2JtTmLvX8gsCbfP/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/354BSP6hMqLPL2EvzoCGoUUI5fn/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/354CtEhwS5bHJDZvMfRjgDhlOCq/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/354Q495l5SoGUP2FW2F68TtkkDb/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/35fWkGeesg3IJZouAVYuw0fEhQK/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/35fcSw9QsM5YptVJ8XUtIE9lgGx/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/35i6htArIWqidfYJEkycPyQI07X/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/36NN00MgZlQQLOtSd1Qqn5g4Zy8/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/36V57Adw7AZGOLzEc1kq3fPDTw3/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-agent-sessions/36VAYO9F2cQtj4uGfYkrfRvuRMG/copilot-agent-sessions-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-sessions/332jIS3kv7D4gUWdpXvxBQTgRwc/copilot-chat-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-sessions/3339WBDRnjk2NqpyBFqnW3tRHel/copilot-chat-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-sessions/333BKLpH5gJ5jnOTK8KePRg8Jgf/copilot-chat-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-sessions/333CHEbetsqUOtZ0HffsbDyIuDn/copilot-chat-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-sessions/333s40IkPipNMGOTO69X2vFnR7v/copilot-chat-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-sessions/3344apEi4PQ777s5icItI6vK9Xm/copilot-chat-nitrite.db
+/home/arch/.config/github-copilot/iu/chat-sessions/33BJwrnSP94uSfumY1HRTK5t4MN/copilot-chat-nitrite.db
