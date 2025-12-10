@@ -57,16 +57,9 @@ if command -v snap &> /dev/null; then
     snap list | awk 'NR>1 {print $1}' > "$BACKUP_DIR/packages/snap.txt" 2>/dev/null || touch "$BACKUP_DIR/packages/snap.txt"
 fi
 
-# Backup pip packages (Python)
-if command -v pip &> /dev/null; then
-    echo "   * Saving pip packages..."
-    pip list --format=freeze > "$BACKUP_DIR/packages/pip.txt" 2>/dev/null || touch "$BACKUP_DIR/packages/pip.txt"
-fi
-
-if command -v pip3 &> /dev/null; then
-    echo "   * Saving pip3 packages..."
-    pip3 list --format=freeze > "$BACKUP_DIR/packages/pip3.txt" 2>/dev/null || touch "$BACKUP_DIR/packages/pip3.txt"
-fi
+# Python packages are skipped (too slow to restore)
+# To backup Python packages manually, run:
+# pip3 list --format=freeze > packages/pip3.txt
 
 # Backup npm global packages (Node.js)
 if command -v npm &> /dev/null; then
@@ -406,6 +399,9 @@ echo "  - npm (global)"
 echo "  - cargo"
 echo "  - Ruby gems"
 echo "  - Go binaries (list only)"
+echo ""
+echo "Skipped (too slow to restore):"
+echo "  - Python packages (pip/pip3)"
 echo ""
 echo "Backed up databases:"
 echo "  - MySQL/MariaDB (if running)"

@@ -18,11 +18,12 @@ The system automatically detects and backs up packages from multiple sources:
 - **AUR (Arch User Repository)**: Community-maintained packages
 - **Flatpak**: Universal Linux applications
 - **Snap**: Snap packages
-- **pip/pip3**: Python packages and libraries
 - **npm**: Node.js global packages
 - **cargo**: Rust packages and tools
 - **Ruby gems**: Ruby libraries and tools
 - **Go binaries**: Installed Go tools (list only, requires manual reinstallation)
+
+**Note**: Python packages (pip/pip3) are excluded from backup and restoration as they take too long to install (often 2-3 hours). Install Python packages manually as needed.
 
 ### Database Backup and Restoration
 Automatic detection and backup of databases from running services:
@@ -256,6 +257,38 @@ cd ~/gnome-backup
 - Maximum of 50 databases backed up
 - Direct file copy preserves all data
 - Records original file paths for reference
+
+## Performance Optimization
+
+### Parallel Processing
+The installation script automatically detects CPU cores and uses parallel processing:
+- Systems with 16+ cores: Uses 8 parallel jobs
+- Systems with 8-16 cores: Uses 4 parallel jobs  
+- Systems with <8 cores: Uses 2 parallel jobs
+
+This significantly reduces installation time on multi-core systems (64-core systems will install much faster).
+
+### Python Packages Excluded
+Python packages are excluded from backup/restore because:
+- Installation takes 2-3 hours even on fast internet (50+ Mbps)
+- Most Python packages are project-specific
+- Better to use virtual environments per project
+
+To install Python packages manually when needed:
+```bash
+pip3 install --user package-name
+```
+
+Or use a requirements.txt for your projects:
+```bash
+pip3 install --user -r requirements.txt
+```
+
+### Optimized for All Systems
+- High-end servers (64 cores): Maximum parallel processing for speed
+- Low-end laptops: Limited parallel jobs to prevent system overload
+- Installation continues even if individual packages fail
+- Can be interrupted with Ctrl+C and resumed later
 
 ## Security Considerations
 

@@ -31,18 +31,19 @@ show_stats() {
     fi
 }
 
-show_stats "pacman-native.txt" "Pacman (native)" "📦"
-show_stats "aur-packages.txt" "AUR packages" "🔧"
-show_stats "flatpak.txt" "Flatpak apps" "📱"
-show_stats "snap.txt" "Snap packages" "📦"
-show_stats "pip3.txt" "Python (pip3)" "🐍"
-show_stats "npm-global.txt" "Node.js (npm)" "📗"
-show_stats "cargo.txt" "Rust (cargo)" "🦀"
-show_stats "ruby-gems.txt" "Ruby gems" "💎"
-show_stats "go-binaries.txt" "Go binaries" "🐹"
+show_stats "pacman-native.txt" "Pacman (native)" "[PKG]"
+show_stats "aur-packages.txt" "AUR packages" "[AUR]"
+show_stats "flatpak.txt" "Flatpak apps" "[FP]"
+show_stats "snap.txt" "Snap packages" "[SNAP]"
+show_stats "npm-global.txt" "Node.js (npm)" "[NPM]"
+show_stats "cargo.txt" "Rust (cargo)" "[RUST]"
+show_stats "ruby-gems.txt" "Ruby gems" "[RUBY]"
+show_stats "go-binaries.txt" "Go binaries" "[GO]"
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 printf "%-25s %5d total\n" "TOTAL:" "$total"
+echo ""
+echo "NOTE: Python packages are skipped (too slow to install)"
 echo ""
 
 # Show recent backup timestamp
