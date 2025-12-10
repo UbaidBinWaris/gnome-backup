@@ -1,0 +1,12 @@
+{
+  "name": "Custom Window Controls",
+  "description": "Theme the window control buttons. (Warning: Highly Experimental)",
+  "uuid": "custom-window-controls@icedman.github.com",
+  "shell-version": [
+    "45"
+  ],
+  "url": "https://github.com/icedman/custom-window-controls",
+  "schema-id": "org.gnome.shell.extensions.custom-window-controls",
+  "gettext-domain": "custom-window-controls",
+  "version": 3
+}
