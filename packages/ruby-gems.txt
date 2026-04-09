@@ -1,6 +1,9 @@
+addressable
 benchmark
 bundler
 cgi
+clocale
+colorls
 date
 delegate
 did_you_mean
@@ -11,6 +14,7 @@ error_highlight
 etc
 fcntl
 fiddle
+filesize
 fileutils
 find
 forwardable
@@ -20,11 +24,12 @@ io-wait
 ipaddr
 json
 logger
+manpages
 net-http
 net-protocol
-open-uri
 open3
 openssl
+open-uri
 optparse
 ostruct
 pathname
@@ -33,6 +38,8 @@ prettyprint
 prism
 pstore
 psych
+public_suffix
+rainbow
 readline
 reline
 resolv
@@ -51,6 +58,7 @@ timeout
 tmpdir
 tsort
 un
+unicode-display_width
 uri
 weakref
 yaml

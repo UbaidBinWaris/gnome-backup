@@ -10,13 +10,13 @@ echo "Ruby Gem Restoration"
 echo "========================================"
 echo ""
 
-if [ ! -f "$PKG_DIR/ruby.txt" ]; then
+if [ ! -f "$PKG_DIR/ruby-gems.txt" ]; then
     echo "[INFO] No Ruby gem list found"
-    echo "Expected location: $PKG_DIR/ruby.txt"
+    echo "Expected location: $PKG_DIR/ruby-gems.txt"
     exit 0
 fi
 
-PACKAGE_COUNT=$(wc -l < "$PKG_DIR/ruby.txt")
+PACKAGE_COUNT=$(grep -cve '^$' "$PKG_DIR/ruby-gems.txt")
 
 if [ "$PACKAGE_COUNT" -eq 0 ]; then
     echo "[INFO] No Ruby gems to restore"
@@ -61,7 +61,7 @@ while IFS= read -r PACKAGE; do
         echo "[FAILED]"
         ((FAILED++))
     fi
-done < "$PKG_DIR/ruby.txt"
+done < "$PKG_DIR/ruby-gems.txt"
 
 echo ""
 echo "========================================"

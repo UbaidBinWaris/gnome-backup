@@ -64,7 +64,10 @@ fi
 # Backup npm global packages (Node.js)
 if command -v npm &> /dev/null; then
     echo "   * Saving npm global packages..."
-    npm list -g --depth=0 --json | grep -oP '(?<=")[^"]*(?=":)' | tail -n +2 > "$BACKUP_DIR/packages/npm-global.txt" 2>/dev/null || touch "$BACKUP_DIR/packages/npm-global.txt"
+    npm list -g --depth=0 --parseable 2>/dev/null \
+        | tail -n +2 \
+        | xargs -r -n1 basename \
+        > "$BACKUP_DIR/packages/npm-global.txt" 2>/dev/null || touch "$BACKUP_DIR/packages/npm-global.txt"
 fi
 
 # Backup cargo packages (Rust)
@@ -84,6 +87,36 @@ if command -v gem &> /dev/null; then
     echo "   * Saving Ruby gems..."
     gem list --local --no-versions > "$BACKUP_DIR/packages/ruby-gems.txt" 2>/dev/null || touch "$BACKUP_DIR/packages/ruby-gems.txt"
 fi
+
+# Normalize package lists: remove empty lines, deduplicate, and sanitize legacy pins
+for list in \
+    pacman-explicit.txt \
+    aur-packages.txt \
+    pacman-native.txt \
+    flatpak.txt \
+    snap.txt \
+    npm-global.txt \
+    cargo.txt \
+    go-binaries.txt \
+    ruby-gems.txt; do
+    file="$BACKUP_DIR/packages/$list"
+    [ -f "$file" ] || continue
+
+    if [ "$list" = "npm-global.txt" ]; then
+        # Keep scoped package names, but strip explicit version pins if present.
+        awk 'NF {
+            pkg=$1
+            if (pkg ~ /^@[^/]+\/[^@]+@[0-9]/) {
+                sub(/@[0-9].*$/, "", pkg)
+            } else if (pkg !~ /^@/ && pkg ~ /@[0-9]/) {
+                sub(/@[0-9].*$/, "", pkg)
+            }
+            print pkg
+        }' "$file" | sort -u > "$file.tmp" && mv "$file.tmp" "$file"
+    else
+        awk 'NF {print $1}' "$file" | sort -u > "$file.tmp" && mv "$file.tmp" "$file"
+    fi
+done
 
 # Create a comprehensive install script
 echo "   * Creating install script..."

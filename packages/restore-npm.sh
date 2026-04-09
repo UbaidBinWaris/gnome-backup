@@ -10,13 +10,13 @@ echo "NPM Global Package Restoration"
 echo "========================================"
 echo ""
 
-if [ ! -f "$PKG_DIR/npm.txt" ]; then
+if [ ! -f "$PKG_DIR/npm-global.txt" ]; then
     echo "[INFO] No NPM package list found"
-    echo "Expected location: $PKG_DIR/npm.txt"
+    echo "Expected location: $PKG_DIR/npm-global.txt"
     exit 0
 fi
 
-PACKAGE_COUNT=$(wc -l < "$PKG_DIR/npm.txt")
+PACKAGE_COUNT=$(grep -cve '^$' "$PKG_DIR/npm-global.txt")
 
 if [ "$PACKAGE_COUNT" -eq 0 ]; then
     echo "[INFO] No NPM packages to restore"
@@ -61,7 +61,7 @@ while IFS= read -r PACKAGE; do
         echo "[FAILED]"
         ((FAILED++))
     fi
-done < "$PKG_DIR/npm.txt"
+done < "$PKG_DIR/npm-global.txt"
 
 echo ""
 echo "========================================"

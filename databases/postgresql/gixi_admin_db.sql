@@ -2,10 +2,10 @@
 -- PostgreSQL database dump
 --
 
-\restrict w3r2LmVGTlcOUH8voRsPBfTUJgchcDMMasSuxhm489r6ZBD6dJG60FnFzmZfaoY
+\restrict exNYZUTWg0c5vS7HHxR8eZpmNC5ChMBmVAnWbmzJ0RogbnosxzgfZlYbF27QE9g
 
--- Dumped from database version 18.1
--- Dumped by pg_dump version 18.1
+-- Dumped from database version 18.3
+-- Dumped by pg_dump version 18.3
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -290,7 +290,7 @@ COPY public.admin_audit_log (id, admin_id, action, resource_type, resource_id, d
 --
 
 COPY public.admin_users (id, username, email, password_hash, role, last_login, login_attempts, locked_until, created_at, updated_at) FROM stdin;
-7f0637b6-48bb-4bc7-b1da-b5932e2e622d	admin	admin@gixiai.com	$2b$12$L7Hi5FI5F0OvLlcS7/ZiNe8GV9BE16twvBtjY/k6H75E./NrDj0u2	super_admin	2025-12-02 05:04:06.413189+05	0	\N	2025-10-02 10:34:10.163411+05	2025-12-02 05:04:06.413189+05
+7f0637b6-48bb-4bc7-b1da-b5932e2e622d	admin	admin@gixiai.com	$2b$12$L7Hi5FI5F0OvLlcS7/ZiNe8GV9BE16twvBtjY/k6H75E./NrDj0u2	super_admin	2026-03-27 19:38:18.278471+05	0	\N	2025-10-02 10:34:10.163411+05	2026-03-27 19:38:18.278471+05
 \.
 
 
@@ -705,5 +705,5 @@ ALTER TABLE ONLY public.admin_audit_log
 -- PostgreSQL database dump complete
 --
 
-\unrestrict w3r2LmVGTlcOUH8voRsPBfTUJgchcDMMasSuxhm489r6ZBD6dJG60FnFzmZfaoY
+\unrestrict exNYZUTWg0c5vS7HHxR8eZpmNC5ChMBmVAnWbmzJ0RogbnosxzgfZlYbF27QE9g
 

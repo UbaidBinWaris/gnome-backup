@@ -199,7 +199,7 @@ export default class DimBackgroundWindowsExtension extends Extension {
         // Loop on each window
         global.get_window_actors().forEach( ( window_actor ) => {
             // Disable the dim effect on the window
-            this._disable_window_dimming( window_actor );
+            this._disable_window_dimming( window_actor, true );
         });
 
         // Delete the settings objects
@@ -312,6 +312,14 @@ export default class DimBackgroundWindowsExtension extends Extension {
                 return;
             }
 
+            const window_title = meta_window.get_title?.() ?? '';
+            if( this._should_exclude_title( window_title ) ) {
+                if( window_actor.get_effect( 'dim' ) ) {
+                    this._disable_window_dimming( window_actor );
+                }
+                return;
+            }
+
             // Exit if the window is not dimmable 
             if( ! this._is_dimmable_type( meta_window ) ) {
                 return;
@@ -380,6 +388,19 @@ export default class DimBackgroundWindowsExtension extends Extension {
         });
     }
 
+    // Determine if a window title should be excluded based on the regex setting
+    _should_exclude_title( window_title ) {
+        const pattern = this.settings.get_string( 'dimming-exclude-regex' );
+        if( ! pattern || pattern.trim() === '' ) {
+            return false;
+        }
+        try {
+            return new RegExp( pattern ).test( window_title );
+        } catch( _error ) {
+            return false;
+        }
+    }
+
     // This function computes the brightness value to use depending on the night light and dark style settings
     _getBrightness() {
         let brightness;
@@ -419,9 +440,15 @@ export default class DimBackgroundWindowsExtension extends Extension {
     // Function used to configure the dim effect - there is one per window - and to connect all listeners to the window
     _enable_window_dimming( window_actor ) {
 
-        // Create the dim effect
-        let effect = new this._DimWindowEffect( this._getBrightness(), this._getSaturation() );
-        window_actor._effect = effect;
+        // Create or reuse the dim effect
+        let effect = window_actor._effect;
+        if( ! effect ) {
+            effect = new this._DimWindowEffect( this._getBrightness(), this._getSaturation() );
+            window_actor._effect = effect;
+        } else {
+            effect.set_brightness( this._getBrightness() );
+            effect.set_saturation( this._getSaturation() );
+        }
         window_actor.add_effect_with_name( 'dim', effect );
 
         // Listen to the brightness setting change
@@ -482,7 +509,7 @@ export default class DimBackgroundWindowsExtension extends Extension {
     }
 
     // Function used to delete the window effect and to disconnect all listeners from the window
-    _disable_window_dimming( window_actor ) {
+    _disable_window_dimming( window_actor, destroy_effect = false ) {
 
         // Remove the brightness update event listener
         if( window_actor._on_update_brightness ) {
@@ -550,12 +577,16 @@ export default class DimBackgroundWindowsExtension extends Extension {
             delete window_actor.on_night_light_change;
         }
 
-        // Remove the dim effect
+        // Detach the dim effect (keep for reuse)
         if( window_actor.get_effect( 'dim' ) ) {
             window_actor.remove_effect_by_name( 'dim' );
         }
-        // Delete the effect object for this window
-        if( window_actor._effect ) {
+
+        // Optionally destroy the effect object
+        if( destroy_effect && window_actor._effect ) {
+            if( typeof window_actor._effect.destroy === 'function' ) {
+                window_actor._effect.destroy();
+            }
             delete window_actor._effect;
         }
     }
