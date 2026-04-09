@@ -1,0 +1,14 @@
+sudo pacman -Syu --noconfirm git
+git clone https://github.com/UbaidBinWaris/gnome-backup.git ~/gnome-backup
+cd ~/gnome-backup
+chmod +x backup-gnome.sh restore-gnome.sh show-packages.sh packages/*.sh databases/*.sh
+./restore-gnome.sh
+
+
+cd ~/gnome-backup
+./packages/install-yay.sh
+./packages/install-all.sh
+
+
+cd ~/gnome-backup
+./restore-gnome.sh
