@@ -2,10 +2,10 @@
 -- PostgreSQL database dump
 --
 
-\restrict Jd4hK9BB51WIZgzh9zcWFtfToB359nddETlU1uZzmD9jhesaa6khdEoxlbL86VZ
+\restrict b3T2kPgf6T0xK8x2ODANjREPcY76FUtEG2bbj9bdvj2ltzwfbNqf5pAh1Xm3EkN
 
--- Dumped from database version 18.3
--- Dumped by pg_dump version 18.3
+-- Dumped from database version 18.4
+-- Dumped by pg_dump version 18.4
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -70,8 +70,8 @@ CREATE TABLE public.user_info (
     updated_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
     oauth_id character varying(255),
     oauth_provider character varying(50),
-    CONSTRAINT chk_role CHECK (((role)::text = ANY ((ARRAY['USER'::character varying, 'ADMIN'::character varying])::text[]))),
-    CONSTRAINT chk_status CHECK (((status)::text = ANY ((ARRAY['ACTIVE'::character varying, 'SUSPENDED'::character varying, 'BLOCKED'::character varying, 'LOCKED'::character varying, 'INACTIVE'::character varying, 'PENDING'::character varying])::text[])))
+    CONSTRAINT chk_role CHECK (((role)::text = ANY (ARRAY[('USER'::character varying)::text, ('ADMIN'::character varying)::text]))),
+    CONSTRAINT chk_status CHECK (((status)::text = ANY (ARRAY[('ACTIVE'::character varying)::text, ('SUSPENDED'::character varying)::text, ('BLOCKED'::character varying)::text, ('LOCKED'::character varying)::text, ('INACTIVE'::character varying)::text, ('PENDING'::character varying)::text])))
 );
 
 
@@ -258,5 +258,5 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public GRANT ALL ON TABLES 
 -- PostgreSQL database dump complete
 --
 
-\unrestrict Jd4hK9BB51WIZgzh9zcWFtfToB359nddETlU1uZzmD9jhesaa6khdEoxlbL86VZ
+\unrestrict b3T2kPgf6T0xK8x2ODANjREPcY76FUtEG2bbj9bdvj2ltzwfbNqf5pAh1Xm3EkN
 

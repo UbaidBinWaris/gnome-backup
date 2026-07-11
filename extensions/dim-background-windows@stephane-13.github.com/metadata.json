@@ -8,9 +8,10 @@
     "46",
     "47",
     "48",
-    "49"
+    "49",
+    "50"
   ],
   "url": "https://github.com/stephane-13/gnome-shell-extension-dim-background-windows",
   "uuid": "dim-background-windows@stephane-13.github.com",
-  "version": 21
+  "version": 24
 }

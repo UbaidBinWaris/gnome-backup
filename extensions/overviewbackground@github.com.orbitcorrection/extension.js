@@ -80,10 +80,6 @@ export default class OvervievBackgroudExtension extends Extension {
             this._bgManagers[i].destroy();    
         
         this._bgManagers = [];
-        
-        if (!this._backgroundGroup)
-            this._backgroundGroup = new Clutter.Actor();
-            
         this._backgroundGroup.destroy_all_children();
 
         for (let i = 0; i < Main.layoutManager.monitors.length; i++)

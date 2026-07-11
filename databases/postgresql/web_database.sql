@@ -2,10 +2,10 @@
 -- PostgreSQL database dump
 --
 
-\restrict bdc0YcMs79ONbwNGaIFCsMjf4xbTe9V2IBjUisVbPz2gbMC1ynnOGzYhZ0fDUG9
+\restrict kWmqMIrWBxaWEeJ2crYT3w07qSq2uLsDhEz6JRYd87778TaZMECrWLjpqacGfZi
 
--- Dumped from database version 18.3
--- Dumped by pg_dump version 18.3
+-- Dumped from database version 18.4
+-- Dumped by pg_dump version 18.4
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -42,7 +42,7 @@ CREATE TABLE public.user_info (
     role character varying(20) NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     username character varying(50) NOT NULL,
-    CONSTRAINT user_info_role_check CHECK (((role)::text = ANY ((ARRAY['USER'::character varying, 'ADMIN'::character varying])::text[])))
+    CONSTRAINT user_info_role_check CHECK (((role)::text = ANY (ARRAY[('USER'::character varying)::text, ('ADMIN'::character varying)::text])))
 );
 
 
@@ -213,5 +213,5 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public GRANT ALL ON TABLES 
 -- PostgreSQL database dump complete
 --
 
-\unrestrict bdc0YcMs79ONbwNGaIFCsMjf4xbTe9V2IBjUisVbPz2gbMC1ynnOGzYhZ0fDUG9
+\unrestrict kWmqMIrWBxaWEeJ2crYT3w07qSq2uLsDhEz6JRYd87778TaZMECrWLjpqacGfZi
 

@@ -43,6 +43,7 @@ Wallpaper Slideshow is provided free of charge. If you enjoy using this extensio
 | Language | Translators |
 | ------ | ------ |
 | **German** | **@[daPhipz](https://gitlab.com/daPhipz)** |
+| **French** | **@[leprous77](https://gitlab.com/leprous77)** |
 | **Occitan** | **@[Quentin](https://gitlab.com/quenty_occitania)** |
 | **Portuguese** | **@[gustavocsfreitas](https://gitlab.com/gustavocsfreitas)** |
 | **Russian** | **@[kve1989](https://gitlab.com/kve1989), @[7up4](https://gitlab.com/7up4)** |

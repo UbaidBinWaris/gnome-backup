@@ -1,7 +1,6 @@
 import Gio from 'gi://Gio';
 
 import * as Config from 'resource:///org/gnome/shell/misc/config.js';
-import {Extension} from 'resource:///org/gnome/shell/extensions/extension.js';
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 import * as MessageTray from 'resource:///org/gnome/shell/ui/messageTray.js';
 
@@ -40,8 +39,7 @@ export function getPrettyFileName(filename) {
  * @param {Function} actionCallback the callback for the action
  */
 export function notify(title, body, actionLabel = null, actionCallback = null) {
-    const extension = Extension.lookupByURL(import.meta.url);
-    const gicon = Gio.icon_new_for_string(`${extension.path}/media/azwallpaper-logo.svg`);
+    const gicon = Gio.icon_new_for_string('resource:///org/gnome/shell/extensions/azwallpaper/icons/azwallpaper-logo.svg');
 
     const source = getSource(PROJECT_NAME, 'application-x-addon-symbolic');
     Main.messageTray.add(source);

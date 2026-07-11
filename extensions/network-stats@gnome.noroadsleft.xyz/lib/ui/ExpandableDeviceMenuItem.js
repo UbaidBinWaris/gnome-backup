@@ -3,7 +3,7 @@ import Gio from "gi://Gio";
 import St from "gi://St";
 import { PopupSubMenuMenuItem } from "resource:///org/gnome/shell/ui/popupMenu.js";
 import { gettext as _ } from "resource:///org/gnome/shell/extensions/extension.js";
-import { getIconPath } from "../utils/GenUtils.js";
+import { getDeviceIcon, getThemeIconPath } from "../utils/GenUtils.js";
 import { registerGObjectClass } from "../utils/gjs.js";
 export class ExpandableDeviceMenuItem extends PopupSubMenuMenuItem {
     _boxed;
@@ -27,16 +27,20 @@ export class ExpandableDeviceMenuItem extends PopupSubMenuMenuItem {
     _makeDefaultTitleLabel;
     _makeDefaultValueLabel;
     _makeDefaultButton;
+    _resetIcon;
+    _deviceType;
+    _isDark = true;
     constructor(device, options) {
         super("", false);
         const { defaultDeviceName, onResetClicked, onMarkDefaultClicked } = options;
-        const { iconPath } = device;
+        this._deviceType = device.type;
+        this._isDark = true;
         // header
         const box = new St.BoxLayout({ style_class: "popup-menu-item" });
         this.insert_child_at_index(box, 1);
         this._boxed = box;
         this._icon = new St.Icon({
-            gicon: Gio.icon_new_for_string(iconPath),
+            gicon: Gio.icon_new_for_string(getDeviceIcon(this._deviceType, this._isDark)),
             style_class: "icon-24"
         });
         this._nameLabel = new St.Label({
@@ -121,9 +125,10 @@ export class ExpandableDeviceMenuItem extends PopupSubMenuMenuItem {
             y_align: Clutter.ActorAlign.CENTER
         });
         const resetIcon = new St.Icon({
-            gicon: Gio.icon_new_for_string(getIconPath("restart_alt_black_24dp.svg")),
+            gicon: Gio.icon_new_for_string(getThemeIconPath("restart_alt_black_24dp.svg", this._isDark)),
             style_class: "icon-16"
         });
+        this._resetIcon = resetIcon;
         const resetButton = new St.Button({
             style_class: "ci-action-btn ns-button",
             can_focus: true,
@@ -218,6 +223,19 @@ export class ExpandableDeviceMenuItem extends PopupSubMenuMenuItem {
             this._makeDefaultButton.show();
         }
         this._makeDefaultTitleLabel.set_text(`${_("Default device")} [${symbol}] : `);
+    }
+    /**
+     * Updates the icons based on dark or light theme.
+     * @param isDark - Whether the current theme is dark
+     */
+    updateTheme(isDark) {
+        this._isDark = isDark;
+        if (this._resetIcon) {
+            this._resetIcon.gicon = Gio.icon_new_for_string(getThemeIconPath("restart_alt_black_24dp.svg", isDark));
+        }
+        if (this._icon && this._deviceType) {
+            this._icon.gicon = Gio.icon_new_for_string(getDeviceIcon(this._deviceType, isDark));
+        }
     }
 }
 registerGObjectClass(ExpandableDeviceMenuItem);

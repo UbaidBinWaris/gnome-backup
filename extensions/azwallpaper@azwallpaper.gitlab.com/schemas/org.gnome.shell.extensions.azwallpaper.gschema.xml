@@ -110,6 +110,14 @@
             <default>false</default>
             <summary>Pause the slideshow.</summary>
         </key>
+        <key type="b" name="slideshow-pause-on-fullscreen">
+            <default>false</default>
+            <summary>Pause the slideshow when a fullscreen window is detected.</summary>
+        </key>
+        <key type="b" name="slideshow-pause-notifications">
+            <default>true</default>
+            <summary>Show notifications when the slideshow is paused/resumes.</summary>
+        </key>
         <key type="b" name="debug-logs">
             <default>false</default>
             <summary>Show/Hide Debug Logs.</summary>

@@ -62,7 +62,7 @@ function createFileChooserButton(parent, settings, setting) {
 export default class AzWallpaperPrefs extends ExtensionPreferences {
     fillPreferencesWindow(window) {
         const settings = this.getSettings();
-        const iconPath = `${this.path}/media`;
+        const resourcePath = '/org/gnome/shell/extensions/azwallpaper/icons';
 
         let pageChangedId = settings.connect('changed::prefs-visible-page', () => {
             if (settings.get_string('prefs-visible-page') !== '')
@@ -78,8 +78,11 @@ export default class AzWallpaperPrefs extends ExtensionPreferences {
         window.set_default_size(750, 800);
 
         const iconTheme = Gtk.IconTheme.get_for_display(Gdk.Display.get_default());
-        if (!iconTheme.get_search_path().includes(iconPath))
-            iconTheme.add_search_path(iconPath);
+        if (!iconTheme.get_resource_path().includes(resourcePath))
+            iconTheme.add_resource_path(resourcePath);
+
+        const resource = Gio.Resource.load(`${this.path}/data/resources.gresource`);
+        Gio.resources_register(resource);
 
         const slideShowPage = new SlideShowPage(settings);
         window.add(slideShowPage);
@@ -113,7 +116,7 @@ export default class AzWallpaperPrefs extends ExtensionPreferences {
     }
 }
 
-var SlideShowPage = GObject.registerClass(
+const SlideShowPage = GObject.registerClass(
 class azWallpaperSlideShowPage extends Adw.PreferencesPage {
     _init(settings) {
         super._init({
@@ -126,7 +129,7 @@ class azWallpaperSlideShowPage extends Adw.PreferencesPage {
         this._backgroundSettings = new Gio.Settings({schema: 'org.gnome.desktop.background'});
 
         const slideShowGroup = new Adw.PreferencesGroup({
-            title: _('Slideshow Options'),
+            title: _('Configure Slideshow'),
         });
         this.add(slideShowGroup);
 
@@ -195,6 +198,7 @@ class azWallpaperSlideShowPage extends Adw.PreferencesPage {
         const slideDurationGrid = new Gtk.Grid({
             row_spacing: 2,
             column_spacing: 4,
+            valign: Gtk.Align.CENTER,
         });
         slideDurationRow.add_suffix(slideDurationGrid);
 
@@ -240,6 +244,30 @@ class azWallpaperSlideShowPage extends Adw.PreferencesPage {
         });
         slideShowGroup.add(slideDurationTypeRow);
 
+
+        const slideshowSettingGroup = new Adw.PreferencesGroup({
+            title: _('Slideshow Settings'),
+        });
+        this.add(slideshowSettingGroup);
+
+        const pauseFullscreenRow = new Adw.SwitchRow({
+            title: _('Pause Slideshow when Fullscreen Window Detected'),
+            active: this._settings.get_boolean('slideshow-pause-on-fullscreen'),
+        });
+        pauseFullscreenRow.connect('notify::active', widget => {
+            this._settings.set_boolean('slideshow-pause-on-fullscreen', widget.get_active());
+        });
+        slideshowSettingGroup.add(pauseFullscreenRow);
+
+        const pauseNotificationsRow = new Adw.SwitchRow({
+            title: _('Notify on Slideshow Pause/Resume'),
+            active: this._settings.get_boolean('slideshow-pause-notifications'),
+        });
+        pauseNotificationsRow.connect('notify::active', widget => {
+            this._settings.set_boolean('slideshow-pause-notifications', widget.get_active());
+        });
+        slideshowSettingGroup.add(pauseNotificationsRow);
+
         const slideControlsRow = new Adw.ActionRow({
             title: _('Slide Controls'),
             subtitle: _('Control the current wallpaper in the slideshow'),
@@ -283,7 +311,7 @@ class azWallpaperSlideShowPage extends Adw.PreferencesPage {
         slideControlsRow.add_suffix(prevSlideButton);
         slideControlsRow.add_suffix(playPauseSlideButton);
         slideControlsRow.add_suffix(nextSlideButton);
-        slideShowGroup.add(slideControlsRow);
+        slideshowSettingGroup.add(slideControlsRow);
 
         const quickSettingsRow = new Adw.SwitchRow({
             title: _('Show Slide Controls in Quick Settings Menu'),
@@ -292,7 +320,7 @@ class azWallpaperSlideShowPage extends Adw.PreferencesPage {
         quickSettingsRow.connect('notify::active', widget => {
             this._settings.set_boolean('slideshow-show-quick-settings-entry', widget.get_active());
         });
-        slideShowGroup.add(quickSettingsRow);
+        slideshowSettingGroup.add(quickSettingsRow);
 
         const wallpaperOptionsGroup = new Adw.PreferencesGroup({
             title: _('Wallpaper Options'),
@@ -304,7 +332,7 @@ class azWallpaperSlideShowPage extends Adw.PreferencesPage {
         adjustmentList.append(_('Wallpaper'));
         adjustmentList.append(_('Centered'));
         adjustmentList.append(_('Scaled'));
-        adjustmentList.append(_('Streched'));
+        adjustmentList.append(_('Stretched'));
         adjustmentList.append(_('Zoom'));
         adjustmentList.append(_('Spanned'));
 
@@ -388,14 +416,13 @@ class azWallpaperSlideShowPage extends Adw.PreferencesPage {
             valign: Gtk.Align.CENTER,
             wrap: true,
             value,
-            orientation: Gtk.Orientation.VERTICAL,
             width_chars: 2,
         });
         return spinButton;
     }
 });
 
-var BingPage = GObject.registerClass(
+const BingPage = GObject.registerClass(
 class azWallpaperBingPage extends Adw.PreferencesPage {
     _init(settings) {
         super._init({
@@ -576,7 +603,7 @@ class azWallpaperBingPage extends Adw.PreferencesPage {
     }
 });
 
-var AboutPage = GObject.registerClass(
+const AboutPage = GObject.registerClass(
 class AzWallpaperAboutPage extends Adw.PreferencesPage {
     _init(settings, metadata, path) {
         super._init({
@@ -940,7 +967,7 @@ class AzWallpaperAboutPage extends Adw.PreferencesPage {
     }
 });
 
-var DonatePage = GObject.registerClass(
+const DonatePage = GObject.registerClass(
 class AzWallpaperDonatePage extends Adw.PreferencesPage {
     _init(metadata) {
         super._init({

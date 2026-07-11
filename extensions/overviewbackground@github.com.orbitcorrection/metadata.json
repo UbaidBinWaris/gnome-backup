@@ -5,7 +5,7 @@
     "github": "howbea"
   },
   "name": "Overview Background",
-  "settings-schema": "org.gnome.shell.extensions.overview-background",
+  "settings-schema": "org.gnome.shell.extensions.ob",
   "shell-version": [
     "46",
     "47",
@@ -15,5 +15,5 @@
   ],
   "url": "https://github.com/howbea/overview-background",
   "uuid": "overviewbackground@github.com.orbitcorrection",
-  "version": 25
+  "version": 27
 }
