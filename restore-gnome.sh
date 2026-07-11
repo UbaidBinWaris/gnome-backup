@@ -3,7 +3,7 @@
 # GNOME Settings Restoration Script
 # This script restores GNOME settings, extensions, themes, packages, and databases
 
-BACKUP_DIR="$HOME/gnome-backup"
+BACKUP_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "========================================"
 echo "GNOME Settings Restoration"
