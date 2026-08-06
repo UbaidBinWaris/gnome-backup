@@ -19,6 +19,8 @@ n8n
 neofetch
 ngrok
 onlyoffice-bin
+rustdesk
+rustdesk-debug
 slack-desktop
 stripe-cli-bin
 subfinder
